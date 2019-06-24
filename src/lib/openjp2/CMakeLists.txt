@@ -81,18 +81,11 @@ if(WIN32)
   add_library(${OPENJPEG_LIBRARY_NAME} SHARED
       	${HEADER_FILES}
   	    ${SOURCE_FILES}
-    )
-  if(BUILD_SHARED_LIBS)
-    target_compile_definitions(${OPENJPEG_LIBRARY_NAME}
-        PRIVATE
-           -DOPJ_EXPORTS 
-    )
-  else()
-    target_compile_definitions(${OPENJPEG_LIBRARY_NAME}
-        PRIVATE
-           -DOPJ_STATIC 
-    )
-  endif()
+  )
+  target_compile_definitions(${OPENJPEG_LIBRARY_NAME}
+      PRIVATE
+        -DOPJ_EXPORTS
+  )
   set(INSTALL_LIBS ${OPENJPEG_LIBRARY_NAME})
 else()
   if(BUILD_SHARED_LIBS AND BUILD_STATIC_LIBS)
