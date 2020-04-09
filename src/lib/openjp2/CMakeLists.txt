@@ -207,3 +207,11 @@ endif(OPJ_USE_THREAD AND NOT Threads_FOUND)
 if(OPJ_USE_THREAD AND Threads_FOUND AND CMAKE_USE_PTHREADS_INIT)
    TARGET_LINK_LIBRARIES(${OPENJPEG_LIBRARY_NAME} ${CMAKE_THREAD_LIBS_INIT})
 endif(OPJ_USE_THREAD AND Threads_FOUND AND CMAKE_USE_PTHREADS_INIT)
+
+if (MSVC)
+  # disable the warning this is an external library so we can't fix them
+  target_compile_options(openjp2
+    PRIVATE
+    /wd4996
+  )
+endif(MSVC)
